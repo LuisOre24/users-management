@@ -1,10 +1,18 @@
 package com.enterprise.Collaborator.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Document {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDocument;
     private String document;
-    private String extension;
+    private Integer extension;
     private Integer state;
 
     public Integer getIdDocument() {
@@ -23,11 +31,11 @@ public class Document {
         this.document = document;
     }
 
-    public String getExtension() {
+    public Integer getExtension() {
         return extension;
     }
 
-    public void setExtension(String extension) {
+    public void setExtension(Integer extension) {
         this.extension = extension;
     }
 

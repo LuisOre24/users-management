@@ -1,12 +1,21 @@
 package com.enterprise.Collaborator.entity;
 
-public class Account {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+@Entity
+public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAccount;
     private String account;
-    private String user;
+    private String username;
     private String password;
     private Integer state;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name =  "collaborator_id", nullable = false, foreignKey = @ForeignKey(name = "fk_account_collaborator"))
+    private Collaborator collaborator;
 
     public Integer getIdAccount() {
         return idAccount;
@@ -24,12 +33,12 @@ public class Account {
         this.account = account;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -1,9 +1,17 @@
 package com.enterprise.Collaborator.entity;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Project {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProject;
     private String project;
+
+    @ManyToOne
+    @JoinColumn(name = "id_company", nullable = true, foreignKey = @ForeignKey(name = "fk_project_company"))
     private Company company;
     private String address;
     private String department;
